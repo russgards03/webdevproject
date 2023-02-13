@@ -11,22 +11,20 @@ CREATE TABLE `tbl_users` (
   PRIMARY KEY  (`user_id`)
 );
 
-DROP TABLE IF EXISTS `tbl_productinv`;
-CREATE TABLE `tbl_productinv` (
+DROP TABLE IF EXISTS `tbl_products`;
+CREATE TABLE `tbl_products` (
+  `product_id` int(180) unsigned NOT NULL auto_increment, 
+  `product_name` varchar(180) NOT NULL default '', 
+  `batch_price`varchar(180) NOT NULL default '', 
+  PRIMARY KEY  (`product_id`) 
+);
+
+DROP TABLE IF EXISTS `tbl_inventory`;
+CREATE TABLE `tbl_inventory` (
   `product_id` int(180) unsigned NOT NULL auto_increment, 
   `product_qty` varchar(180) NOT NULL, 
   `batch_date` date NOT NULL default '0000-00-00',
   PRIMARY KEY  (`product_id`) 
-);
-
-DROP TABLE IF EXISTS `tbl_products`;
-CREATE TABLE `tbl_products` (
-  `order_id` int(8) unsigned NOT NULL auto_increment, 
-  `product_id` int(8) NOT NULL, 
-  `order_qty` varchar(180) NOT NULL default '',
-  `order_amt` varchar(180) NOT NULL default '',
-  KEY (`product_id`),
-  PRIMARY KEY  (`order_id`)
 );
 
 DROP TABLE IF EXISTS `tbl_orders`;
@@ -36,6 +34,17 @@ CREATE TABLE `tbl_orders` (
   `total_orderamt` varchar(180) NOT NULL default '',
   `total_orderqty` varchar(180) NOT NULL default '',
   KEY (`order_id`)
+);
+
+DROP TABLE IF EXISTS `tbl_orderitems`;
+CREATE TABLE `tbl_orderitems` (
+  `order_id` int(8) unsigned NOT NULL, 
+  `product_id` int(8) unsigned NOT NULL, 
+  `order_date` date NOT NULL default '0000-00-00',
+  `order_qty` varchar(180) NOT NULL default '',
+  `order_price` varchar(180) NOT NULL default '',
+  KEY (`order_id`),
+  KEY (`product_id`)
 );
 
 DROP TABLE IF EXISTS `tbl_sales`;
