@@ -15,6 +15,7 @@ DROP TABLE IF EXISTS `tbl_productinv`;
 CREATE TABLE `tbl_productamt` (
   `product_id` int(180) unsigned NOT NULL auto_increment, 
   `product_qty` varchar(180) NOT NULL, 
+  `batch_date` date NOT NULL default '0000-00-00',
   PRIMARY KEY  (`product_id`) 
 );
 
